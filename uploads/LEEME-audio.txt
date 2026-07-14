@@ -1,0 +1,9 @@
+Coloca aquí tu pista de música con el nombre EXACTO:
+
+    cancion.mp3
+
+Es decir, el archivo debe quedar como:  uploads/cancion.mp3
+
+El botón de música (abajo a la derecha) la reproduce/pausa.
+Formato recomendado: MP3. Si tu archivo tiene otro nombre o formato,
+edita el atributo src del <audio> dentro de index.html.
