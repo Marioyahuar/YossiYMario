@@ -289,6 +289,93 @@
         background: oklch(88% 0.06 90);
       }
 
+      .program {
+        position: relative;
+        padding: 44px 30px 12px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .program-timeline {
+        position: relative;
+        margin-top: 18px;
+      }
+      .program-timeline::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 1px;
+        background: oklch(85% 0.08 350);
+        transform: translateX(-50%);
+      }
+      .program-row {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 28px 1fr;
+        align-items: center;
+        column-gap: 8px;
+        padding: 18px 0;
+      }
+      .program-row:first-child {
+        padding-top: 4px;
+      }
+      .program-row:last-child {
+        padding-bottom: 4px;
+      }
+      .program-node {
+        grid-column: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .program-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: oklch(55% 0.22 350);
+        box-shadow: 0 0 0 4px oklch(98% 0.008 90);
+      }
+      .program-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+      }
+      .program-row.side-left .program-content {
+        grid-column: 1;
+        align-items: flex-end;
+        text-align: right;
+      }
+      .program-row.side-right .program-content {
+        grid-column: 3;
+        align-items: flex-start;
+        text-align: left;
+      }
+      .program-icon {
+        width: 32px;
+        height: 32px;
+        color: oklch(55% 0.22 350);
+      }
+      .program-icon svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      .program-label {
+        font-size: 11.5px;
+        letter-spacing: 0.06em;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: oklch(28% 0.03 350);
+      }
+      .program-time {
+        font-size: 12.5px;
+        color: oklch(45% 0.04 350);
+      }
+
       .dresscode {
         padding: 44px 36px 8px;
         text-align: center;
@@ -573,6 +660,129 @@
             target="_blank"
             >Ver mapa</a
           >
+        </div>
+
+        <div class="divider">
+          <div class="divider-line"></div>
+          <svg width="12" height="12" viewBox="0 0 12 12">
+            <circle cx="6" cy="6" r="5" fill="oklch(85% 0.15 95)"></circle>
+            <circle cx="6" cy="6" r="2.4" fill="oklch(55% 0.22 350)"></circle>
+          </svg>
+          <div class="divider-line"></div>
+        </div>
+
+        <div class="program reveal">
+          <div class="event-label">PROGRAMA DEL DÍA</div>
+          <div class="dresscode-text">Así viviremos el día</div>
+
+          <div class="program-timeline">
+            <div class="program-row side-left"
+              <div class="program-content">
+                <div class="program-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2v3" />
+                    <path d="M10.5 3.5h3" />
+                    <path d="M12 5l6 5v11H6V10z" />
+                    <path d="M9 20v-5a3 3 0 0 1 6 0v5" />
+                  </svg>
+                </div>
+                <div class="program-label">Ceremonia católica</div>
+                <div class="program-time">4:00 PM</div>
+              </div>
+              <div class="program-node"><span class="program-dot"></span></div>
+            </div>
+
+            <div class="program-row side-right"
+              <div class="program-node"><span class="program-dot"></span></div>
+              <div class="program-content">
+                <div class="program-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 16l1.2-4.8A2 2 0 0 1 7.1 9.6h9.8a2 2 0 0 1 1.9 1.6L20 16" />
+                    <rect x="3" y="16" width="18" height="4" rx="1" />
+                    <circle cx="7.5" cy="20" r="1.2" />
+                    <circle cx="16.5" cy="20" r="1.2" />
+                  </svg>
+                </div>
+                <div class="program-label">Traslado a recepción</div>
+                <div class="program-time">5:00 PM</div>
+              </div>
+            </div>
+
+            <div class="program-row side-left"
+              <div class="program-content">
+                <div class="program-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 21V4.6L11 3v18" />
+                    <path d="M20 21V6l-6-1.5V21" />
+                    <path d="M4 21h16" />
+                    <circle cx="9" cy="13" r="0.6" fill="currentColor" stroke="none" />
+                    <circle cx="16" cy="13" r="0.6" fill="currentColor" stroke="none" />
+                  </svg>
+                </div>
+                <div class="program-label">Apertura del local</div>
+                <div class="program-time">6:00 PM</div>
+              </div>
+              <div class="program-node"><span class="program-dot"></span></div>
+            </div>
+
+            <div class="program-row side-right"
+              <div class="program-node"><span class="program-dot"></span></div>
+              <div class="program-content">
+                <div class="program-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 6c-1.8-1.4-4-2-6-2v13c2 0 4.2.6 6 2 1.8-1.4 4-2 6-2V4c-2 0-4.2.6-6 2z" />
+                    <path d="M12 6v13" />
+                  </svg>
+                </div>
+                <div class="program-label">Ceremonia evangélica</div>
+                <div class="program-time">6:30 PM</div>
+              </div>
+            </div>
+
+            <div class="program-row side-left"
+              <div class="program-content">
+                <div class="program-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 3h10l-1 6a4 4 0 0 1-8 0z" />
+                    <path d="M12 13v6" />
+                    <path d="M8.5 20h7" />
+                  </svg>
+                </div>
+                <div class="program-label">Ingreso y brindis</div>
+                <div class="program-time">7:30 PM</div>
+              </div>
+              <div class="program-node"><span class="program-dot"></span></div>
+            </div>
+
+            <div class="program-row side-right"
+              <div class="program-node"><span class="program-dot"></span></div>
+              <div class="program-content">
+                <div class="program-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="7" />
+                    <circle cx="12" cy="12" r="2.6" />
+                  </svg>
+                </div>
+                <div class="program-label">Cena</div>
+                <div class="program-time">8:00 PM</div>
+              </div>
+            </div>
+
+            <div class="program-row side-left"
+              <div class="program-content">
+                <div class="program-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 18V5l10-2v13" />
+                    <circle cx="6.5" cy="18" r="2.5" />
+                    <circle cx="16.5" cy="16" r="2.5" />
+                  </svg>
+                </div>
+                <div class="program-label">Inicio de la fiesta</div>
+                <div class="program-time">9:30 PM</div>
+              </div>
+              <div class="program-node"><span class="program-dot"></span></div>
+            </div>
+          </div>
         </div>
 
         <img
