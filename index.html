@@ -94,7 +94,11 @@
 
       #petal-rain {
         position: fixed;
-        inset: 0;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(430px, 100vw);
+        height: 100%;
         pointer-events: none;
         z-index: 100;
         overflow: hidden;
@@ -720,7 +724,7 @@
           "uploads/imgFlowers_fucsia-web.png",
           "uploads/imgFlowers_yellow-web.png",
         ];
-        const count = 26;
+        const count = 35;
         let maxEnd = 0;
         for (let i = 0; i < count; i++) {
           const petal = document.createElement("img");
@@ -734,7 +738,7 @@
           const drift = (Math.random() - 0.5) * 120;
           const rotDir = Math.random() < 0.5 ? -1 : 1;
           const rot = rotDir * (200 + Math.random() * 320);
-          petal.style.left = left + "vw";
+          petal.style.left = left + "%";
           petal.style.width = size + "px";
           petal.style.setProperty("--drift", drift + "px");
           petal.style.setProperty("--rot", rot + "deg");
