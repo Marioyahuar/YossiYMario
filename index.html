@@ -1,299 +1,786 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Yossi &amp; Mario — 05·09·2026</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-  * { box-sizing: border-box; }
-  body { margin: 0; background: oklch(93% 0.01 90); overflow-x: hidden; }
-  a { color: oklch(55% 0.22 350); }
-  a:hover { color: oklch(45% 0.2 350); }
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Yossi &amp; Mario — 05·09·2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: oklch(93% 0.01 90);
+        overflow-x: hidden;
+      }
+      a {
+        color: oklch(55% 0.22 350);
+      }
+      a:hover {
+        color: oklch(45% 0.2 350);
+      }
 
-  .card-section { display: flex; justify-content: center; padding: 48px 20px; }
-  .card {
-    position: relative;
-    width: 100%;
-    max-width: 430px;
-    background: oklch(98% 0.008 90);
-    font-family: Montserrat, sans-serif;
-    color: oklch(28% 0.03 350);
-    overflow: hidden;
-    box-shadow: 0 30px 60px -20px rgba(60,20,40,0.25);
-  }
-  .card img.corner {
-    position: absolute; z-index: 1; pointer-events: none; will-change: transform;
-    transform: translateY(var(--ty, 0px)) scaleX(var(--flip, 1)) rotate(var(--rot, 0deg));
-  }
+      .card-section {
+        display: flex;
+        justify-content: center;
+        padding: 48px 20px;
+      }
+      .card {
+        position: relative;
+        width: 100%;
+        max-width: 430px;
+        background: oklch(98% 0.008 90);
+        font-family: Montserrat, sans-serif;
+        color: oklch(28% 0.03 350);
+        overflow: hidden;
+        box-shadow: 0 30px 60px -20px rgba(60, 20, 40, 0.25);
+      }
+      .card img.corner {
+        position: absolute;
+        z-index: 1;
+        pointer-events: none;
+        will-change: transform;
+        transform: translateY(var(--ty, 0px)) scaleX(var(--flip, 1))
+          rotate(var(--rot, 0deg));
+      }
 
-  @keyframes paw-bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-7px); }
-  }
-  .paws img { animation: paw-bounce 2.2s ease-in-out infinite; }
-  .paws img:nth-child(2) { animation-delay: 0.25s; animation-duration: 2.4s; }
-  .paws img:nth-child(3) { animation-delay: 0.5s; }
+      @keyframes paw-bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-7px);
+        }
+      }
+      .paws img {
+        animation: paw-bounce 2.2s ease-in-out infinite;
+      }
+      .paws img:nth-child(2) {
+        animation-delay: 0.25s;
+        animation-duration: 2.4s;
+      }
+      .paws img:nth-child(3) {
+        animation-delay: 0.5s;
+      }
 
-  .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.8s ease, transform 0.8s ease; }
-  .reveal.in-view { opacity: 1; transform: none; }
+      .reveal {
+        opacity: 0;
+        transform: translateY(26px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+      .reveal.in-view {
+        opacity: 1;
+        transform: none;
+      }
 
-  @media (prefers-reduced-motion: reduce) {
-    .paws img { animation: none; }
-    .reveal { opacity: 1; transform: none; transition: none; }
-    .card img.corner { transform: scaleX(var(--flip, 1)) rotate(var(--rot, 0deg)); }
-  }
+      .bg-flower {
+        position: absolute;
+        z-index: -1;
+        pointer-events: none;
+        opacity: 0.14;
+        will-change: transform;
+        transform: translateY(var(--ty, 0px)) rotate(var(--rot, 0deg));
+      }
 
-  .intro { padding: 60px 36px 22px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px; }
-  .paws { display: flex; gap: 12px; align-items: flex-end; }
-  .eyebrow { font-size: 13px; letter-spacing: 0.24em; font-weight: 600; color: oklch(55% 0.22 350); }
-  .names { font-family: 'Cormorant Garamond', serif; font-size: clamp(34px, 11vw, 60px); line-height: 1.1; font-weight: 500; color: oklch(26% 0.03 350); }
-  .names .amp { font-style: italic; color: oklch(55% 0.22 350); margin: 0 10px; }
-  .date-line { font-size: 15px; letter-spacing: 0.1em; color: oklch(45% 0.04 350); }
+      @media (prefers-reduced-motion: reduce) {
+        .paws img {
+          animation: none;
+        }
+        .reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+        .card img.corner {
+          transform: scaleX(var(--flip, 1)) rotate(var(--rot, 0deg));
+        }
+        .bg-flower {
+          transform: rotate(var(--rot, 0deg));
+        }
+      }
 
-  .invite-text {
-    padding: 0 40px 30px; text-align: center; font-family: 'Cormorant Garamond', serif;
-    font-style: italic; font-size: 19px; line-height: 1.6; color: oklch(36% 0.04 350);
-  }
+      .intro {
+        padding: 60px 36px 22px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+      }
+      .paws {
+        display: flex;
+        gap: 12px;
+        align-items: flex-end;
+      }
+      .eyebrow {
+        font-size: 13px;
+        letter-spacing: 0.24em;
+        font-weight: 600;
+        color: oklch(55% 0.22 350);
+      }
+      .names {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(34px, 11vw, 60px);
+        line-height: 1.1;
+        font-weight: 500;
+        color: oklch(26% 0.03 350);
+      }
+      .names .amp {
+        font-style: italic;
+        color: oklch(55% 0.22 350);
+        margin: 0 10px;
+      }
+      .date-line {
+        font-size: 15px;
+        letter-spacing: 0.1em;
+        color: oklch(45% 0.04 350);
+      }
 
-  .countdown-wrap { padding: 0 20px 30px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
-  .countdown-label { font-size: 11px; letter-spacing: 0.2em; font-weight: 600; color: oklch(55% 0.22 350); }
-  .countdown-row { display: flex; gap: 8px; width: 100%; }
-  .countdown-box { flex: 1; min-width: 0; text-align: center; border: 1px solid oklch(88% 0.06 350); padding: 12px 4px; }
-  .countdown-num { font-family: 'Cormorant Garamond', serif; font-size: clamp(20px, 7vw, 32px); font-weight: 600; color: oklch(55% 0.22 350); line-height: 1; }
-  .countdown-unit { font-size: 10px; letter-spacing: 0.1em; color: oklch(50% 0.04 350); margin-top: 4px; }
+      .invite-text {
+        padding: 0 40px 30px;
+        text-align: center;
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 19px;
+        line-height: 1.6;
+        color: oklch(36% 0.04 350);
+      }
 
-  .photo { width: 100%; display: block; object-fit: cover; }
-  .photo-hero { height: 520px; }
-  .photo-second { height: 400px; margin-top: 40px; }
-  .photo-third { height: 560px; margin-top: 16px; }
+      .countdown-wrap {
+        position: relative;
+        z-index: 0;
+        overflow: hidden;
+        padding: 0 20px 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+      .countdown-label {
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        font-weight: 600;
+        color: oklch(55% 0.22 350);
+      }
+      .countdown-row {
+        display: flex;
+        gap: 8px;
+        width: 100%;
+      }
+      .countdown-box {
+        flex: 1;
+        min-width: 0;
+        text-align: center;
+        border: 1px solid oklch(88% 0.06 350);
+        padding: 12px 4px;
+      }
+      .countdown-num {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(20px, 7vw, 32px);
+        font-weight: 600;
+        color: oklch(55% 0.22 350);
+        line-height: 1;
+      }
+      .countdown-unit {
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        color: oklch(50% 0.04 350);
+        margin-top: 4px;
+      }
 
-  .event { padding: 44px 36px 8px; text-align: center; display: flex; flex-direction: column; gap: 6px; }
-  .event-label { font-size: 12px; letter-spacing: 0.2em; font-weight: 600; color: oklch(55% 0.22 350); }
-  .event-name { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; }
-  .event-time { font-size: 14.5px; color: oklch(45% 0.04 350); }
-  .event-link {
-    margin-top: 10px; align-self: center; color: oklch(55% 0.22 350);
-    border: 1px solid oklch(55% 0.22 350); border-radius: 100px; padding: 9px 24px;
-    font-size: 13px; letter-spacing: 0.04em; text-decoration: none;
-  }
+      .photo {
+        width: 100%;
+        display: block;
+        object-fit: cover;
+      }
+      .photo-hero {
+        height: 520px;
+      }
+      .photo-second {
+        height: 400px;
+        margin-top: 40px;
+      }
+      .photo-third {
+        height: 560px;
+        margin-top: 16px;
+      }
 
-  .divider { padding: 26px 60px; display: flex; align-items: center; gap: 14px; }
-  .divider-line { flex: 1; height: 1px; background: oklch(88% 0.06 90); }
+      .event {
+        position: relative;
+        z-index: 0;
+        overflow: hidden;
+        padding: 44px 36px 8px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .event-label {
+        font-size: 12px;
+        letter-spacing: 0.2em;
+        font-weight: 600;
+        color: oklch(55% 0.22 350);
+      }
+      .event-name {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 24px;
+        font-weight: 600;
+      }
+      .event-time {
+        font-size: 14.5px;
+        color: oklch(45% 0.04 350);
+      }
+      .event-link {
+        margin-top: 10px;
+        align-self: center;
+        color: oklch(55% 0.22 350);
+        border: 1px solid oklch(55% 0.22 350);
+        border-radius: 100px;
+        padding: 9px 24px;
+        font-size: 13px;
+        letter-spacing: 0.04em;
+        text-decoration: none;
+      }
 
-  .dresscode { padding: 44px 36px 8px; text-align: center; display: flex; flex-direction: column; gap: 8px; }
-  .dresscode-title { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; }
-  .dresscode-text { font-size: 14px; color: oklch(45% 0.04 350); }
+      .divider {
+        padding: 26px 60px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .divider-line {
+        flex: 1;
+        height: 1px;
+        background: oklch(88% 0.06 90);
+      }
 
-  .rsvp { padding: 44px 36px 8px; text-align: center; display: flex; flex-direction: column; gap: 14px; align-items: center; }
-  .rsvp-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; }
-  .rsvp-text { font-size: 14px; color: oklch(45% 0.04 350); max-width: 300px; }
-  .rsvp-button {
-    background: oklch(55% 0.22 350); color: white; border-radius: 100px; padding: 13px 30px;
-    font-size: 14px; letter-spacing: 0.03em; text-decoration: none; font-weight: 600;
-  }
+      .dresscode {
+        padding: 44px 36px 8px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .dresscode-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 24px;
+        font-weight: 600;
+      }
+      .dresscode-text {
+        font-size: 14px;
+        color: oklch(45% 0.04 350);
+      }
 
-  .gifts { padding: 44px 36px 8px; text-align: center; display: flex; flex-direction: column; gap: 8px; }
-  .gifts-label { font-size: 12px; letter-spacing: 0.2em; font-weight: 600; color: oklch(55% 0.22 350); }
-  .gifts-text { font-size: 14px; color: oklch(45% 0.04 350); max-width: 320px; margin: 0 auto; }
-  .gifts-accounts { display: flex; flex-direction: column; gap: 12px; margin-top: 14px; text-align: left; }
-  .account { border: 1px solid oklch(88% 0.06 350); padding: 16px 18px; display: flex; flex-direction: column; gap: 3px; }
-  .account-bank { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 600; color: oklch(55% 0.22 350); }
-  .account-detail { font-size: 13px; }
-  .account-owner { font-size: 12.5px; color: oklch(50% 0.04 350); }
+      .rsvp {
+        position: relative;
+        z-index: 0;
+        overflow: hidden;
+        padding: 44px 36px 8px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        align-items: center;
+      }
+      .rsvp-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 26px;
+        font-weight: 600;
+      }
+      .rsvp-text {
+        font-size: 14px;
+        color: oklch(45% 0.04 350);
+        max-width: 300px;
+      }
+      .rsvp-button {
+        background: oklch(55% 0.22 350);
+        color: white;
+        border-radius: 100px;
+        padding: 13px 30px;
+        font-size: 14px;
+        letter-spacing: 0.03em;
+        text-decoration: none;
+        font-weight: 600;
+      }
 
-  .note { padding: 20px 36px; text-align: center; font-size: 13px; color: oklch(50% 0.04 350); }
+      .gifts {
+        position: relative;
+        z-index: 0;
+        overflow: hidden;
+        padding: 44px 36px 8px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .gifts-label {
+        font-size: 12px;
+        letter-spacing: 0.2em;
+        font-weight: 600;
+        color: oklch(55% 0.22 350);
+      }
+      .gifts-text {
+        font-size: 14px;
+        color: oklch(45% 0.04 350);
+        max-width: 320px;
+        margin: 0 auto;
+      }
+      .gifts-accounts {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 14px;
+        text-align: left;
+      }
+      .account {
+        border: 1px solid oklch(88% 0.06 350);
+        padding: 16px 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+      .account-bank {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 19px;
+        font-weight: 600;
+        color: oklch(55% 0.22 350);
+      }
+      .account-detail {
+        font-size: 13px;
+      }
+      .account-owner {
+        font-size: 12.5px;
+        color: oklch(50% 0.04 350);
+      }
 
-  .signoff { padding: 36px 36px 140px; text-align: center; display: flex; flex-direction: column; gap: 10px; align-items: center; }
-  .signoff-line { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; color: oklch(36% 0.04 350); }
-  .signoff-names { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 600; }
-  .signoff-dogs { font-size: 13px; color: oklch(50% 0.04 350); }
+      .note {
+        padding: 20px 36px;
+        text-align: center;
+        font-size: 13px;
+        color: oklch(50% 0.04 350);
+      }
 
-  .music-btn {
-    position: fixed; bottom: 22px; right: 22px; z-index: 20; width: 54px; height: 54px;
-    border-radius: 100%; border: none; background: oklch(55% 0.22 350); color: white;
-    box-shadow: 0 10px 24px -6px rgba(60,20,40,0.55); cursor: pointer; font-size: 20px;
-    line-height: 1; display: flex; align-items: center; justify-content: center;
-  }
-</style>
-</head>
-<body>
+      .signoff {
+        padding: 36px 36px 140px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+      }
+      .signoff-line {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 17px;
+        color: oklch(36% 0.04 350);
+      }
+      .signoff-names {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 30px;
+        font-weight: 600;
+      }
+      .signoff-dogs {
+        font-size: 13px;
+        color: oklch(50% 0.04 350);
+      }
 
-<section class="card-section">
-  <div class="card">
-    <img class="corner" data-speed="0.05" src="uploads/imgFlowers_yellow-web.png" alt="" style="top:-34px;left:-30px;height:150px;--rot:-6deg">
-    <img class="corner" data-speed="-0.04" src="uploads/imgFlowers_fucsia-web.png" alt="" style="top:-24px;left:46px;height:112px;--rot:20deg">
-    <img class="corner" data-speed="0.06" src="uploads/imgFlowers_fucsia-web.png" alt="" style="top:-30px;right:-26px;height:135px;--flip:-1;--rot:-10deg">
+      .music-btn {
+        position: fixed;
+        bottom: 22px;
+        right: 22px;
+        z-index: 20;
+        width: 54px;
+        height: 54px;
+        border-radius: 100%;
+        border: none;
+        background: oklch(55% 0.22 350);
+        color: white;
+        box-shadow: 0 10px 24px -6px rgba(60, 20, 40, 0.55);
+        cursor: pointer;
+        font-size: 20px;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="card-section">
+      <div class="card">
+        <img
+          class="corner"
+          data-speed="0.05"
+          src="uploads/imgFlowers_yellow-web.png"
+          alt=""
+          style="top: -34px; left: -30px; height: 150px; --rot: -6deg"
+        />
+        <img
+          class="corner"
+          data-speed="-0.04"
+          src="uploads/imgFlowers_fucsia-web.png"
+          alt=""
+          style="top: -24px; left: 46px; height: 112px; --rot: 20deg"
+        />
+        <img
+          class="corner"
+          data-speed="0.06"
+          src="uploads/imgFlowers_fucsia-web.png"
+          alt=""
+          style="
+            top: -30px;
+            right: -26px;
+            height: 135px;
+            --flip: -1;
+            --rot: -10deg;
+          "
+        />
 
-    <div class="intro">
-      <div class="paws">
-        <img src="uploads/huellita_fucsia-web.png" alt="" style="height:38px">
-        <img src="uploads/huellita_amarilla-web.png" alt="" style="height:44px">
-        <img src="uploads/huellita_fucsia-web.png" alt="" style="height:38px">
-      </div>
-      <div class="eyebrow">¡NUESTRAS PERRITAS ANUNCIAN QUE SUS PAPIS SE CASAN!</div>
-      <div class="names">Yossi <span class="amp">&amp;</span> Mario</div>
-      <div class="date-line">5 DE SEPTIEMBRE, 2026</div>
-    </div>
-
-    <div class="invite-text reveal">Chansey, Tiana y Lulú nos ayudan a invitarte — rodeados de flores y familia, queremos compartir contigo el día en que nos convertimos en esposos.</div>
-
-    <div class="countdown-wrap reveal">
-      <div class="countdown-label">FALTAN PARA EL GRAN DÍA</div>
-      <div class="countdown-row">
-        <div class="countdown-box"><div class="countdown-num" id="cd-days">--</div><div class="countdown-unit">DÍAS</div></div>
-        <div class="countdown-box"><div class="countdown-num" id="cd-hours">--</div><div class="countdown-unit">HRS</div></div>
-        <div class="countdown-box"><div class="countdown-num" id="cd-mins">--</div><div class="countdown-unit">MIN</div></div>
-        <div class="countdown-box"><div class="countdown-num" id="cd-secs">--</div><div class="countdown-unit">SEG</div></div>
-      </div>
-    </div>
-
-    <img class="photo photo-hero reveal" src="images/img1-web.jpg" alt="Yossi y Mario">
-
-    <div class="event reveal">
-      <div class="event-label">CEREMONIA RELIGIOSA</div>
-      <div class="event-name">Parroquia San Josemaría Escrivá</div>
-      <div class="event-time">4:00 PM</div>
-      <a class="event-link" href="https://maps.app.goo.gl/uokSrK6ic4wXpnvV7" target="_blank">Ver mapa</a>
-    </div>
-
-    <div class="divider">
-      <div class="divider-line"></div>
-      <svg width="12" height="12" viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="oklch(85% 0.15 95)"></circle><circle cx="6" cy="6" r="2.4" fill="oklch(55% 0.22 350)"></circle></svg>
-      <div class="divider-line"></div>
-    </div>
-
-    <div class="event reveal">
-      <div class="event-label">RECEPCIÓN</div>
-      <div class="event-name">Refugio El Parral</div>
-      <div class="event-time">6:00 PM</div>
-      <a class="event-link" href="https://maps.app.goo.gl/SSoSAZXwJd8aYQ9i8" target="_blank">Ver mapa</a>
-    </div>
-
-    <img class="photo photo-second reveal" src="images/img2-web.jpg" alt="Detalle con nuestra perrita">
-
-    <div class="dresscode reveal">
-      <div class="event-label">DRESS CODE</div>
-      <div class="dresscode-title">Formal · Elegante</div>
-      <div class="dresscode-text">Nuestra decoración es un festín de fucsias y amarillos — ¡ven vestido para hacerle honor!</div>
-    </div>
-
-    <div class="rsvp reveal">
-      <div class="rsvp-title">Confirma tu asistencia</div>
-      <div class="rsvp-text">Antes del 20 de agosto, escribiendo a nuestra wedding planner Fiorella.</div>
-      <a class="rsvp-button" href="https://wa.me/51986355732?text=Hola%20Fiorella%2C%20quiero%20confirmar%20mi%20asistencia%20a%20la%20boda%20de%20Yossi%20%26%20Mario%20%C2%B7%2005.09.2026%20%F0%9F%92%9B" target="_blank">Confirmar por WhatsApp</a>
-    </div>
-
-    <div class="gifts reveal">
-      <div class="gifts-label">MESA DE REGALOS</div>
-      <div class="gifts-text">Tu presencia es nuestro mejor regalo. Si deseas tener un detalle con nosotros:</div>
-      <div class="gifts-accounts">
-        <div class="account">
-          <div class="account-bank">Interbank · Soles</div>
-          <div class="account-detail">Cuenta: 898 3224548453</div>
-          <div class="account-detail">CCI: 00389801322454845341</div>
-          <div class="account-owner">A nombre de Mario Yahuarcani Salinas</div>
+        <div class="intro">
+          <div class="paws">
+            <img
+              src="uploads/huellita_fucsia-web.png"
+              alt=""
+              style="height: 38px"
+            />
+            <img
+              src="uploads/huellita_amarilla-web.png"
+              alt=""
+              style="height: 44px"
+            />
+            <img
+              src="uploads/huellita_fucsia-web.png"
+              alt=""
+              style="height: 38px"
+            />
+          </div>
+          <div class="eyebrow">
+            ¡NUESTRAS PERRITAS ANUNCIAN QUE SUS PAPIS SE CASAN!
+          </div>
+          <div class="names">Yossi <span class="amp">&amp;</span> Mario</div>
+          <div class="date-line">5 DE SEPTIEMBRE, 2026</div>
         </div>
-        <div class="account">
-          <div class="account-bank">BBVA · Soles</div>
-          <div class="account-detail">Cuenta: 0011-0057-0257171494</div>
-          <div class="account-detail">CCI: 01105700025717149474</div>
-          <div class="account-owner">A nombre de Yossi Lara Guardamino</div>
+
+        <div class="invite-text reveal">
+          Habrá flores por todos lados, música hasta tarde y tres perritas
+          orgullosas viendo a sus papis decir que sí.
         </div>
+
+        <div class="countdown-wrap reveal">
+          <img
+            class="bg-flower"
+            data-speed="0.18"
+            data-max="70"
+            src="uploads/imgFlowers_fucsia-web.png"
+            alt=""
+            style="height: 220px; bottom: -60px; right: -50px; --rot: 24deg"
+          />
+          <div class="countdown-label">FALTAN PARA EL GRAN DÍA</div>
+          <div class="countdown-row">
+            <div class="countdown-box">
+              <div class="countdown-num" id="cd-days">--</div>
+              <div class="countdown-unit">DÍAS</div>
+            </div>
+            <div class="countdown-box">
+              <div class="countdown-num" id="cd-hours">--</div>
+              <div class="countdown-unit">HRS</div>
+            </div>
+            <div class="countdown-box">
+              <div class="countdown-num" id="cd-mins">--</div>
+              <div class="countdown-unit">MIN</div>
+            </div>
+            <div class="countdown-box">
+              <div class="countdown-num" id="cd-secs">--</div>
+              <div class="countdown-unit">SEG</div>
+            </div>
+          </div>
+        </div>
+
+        <img
+          class="photo photo-hero reveal"
+          src="images/img1-web.jpg"
+          alt="Yossi y Mario"
+        />
+
+        <div class="event reveal">
+          <img
+            class="bg-flower"
+            data-speed="0.16"
+            data-max="65"
+            src="uploads/imgFlowers_yellow-web.png"
+            alt=""
+            style="height: 170px; top: -40px; right: -50px; --rot: 14deg"
+          />
+          <div class="event-label">CEREMONIA RELIGIOSA</div>
+          <div class="event-name">Parroquia San Josemaría Escrivá</div>
+          <div class="event-time">4:00 PM</div>
+          <a
+            class="event-link"
+            href="https://maps.app.goo.gl/uokSrK6ic4wXpnvV7"
+            target="_blank"
+            >Ver mapa</a
+          >
+        </div>
+
+        <div class="divider">
+          <div class="divider-line"></div>
+          <svg width="12" height="12" viewBox="0 0 12 12">
+            <circle cx="6" cy="6" r="5" fill="oklch(85% 0.15 95)"></circle>
+            <circle cx="6" cy="6" r="2.4" fill="oklch(55% 0.22 350)"></circle>
+          </svg>
+          <div class="divider-line"></div>
+        </div>
+
+        <div class="event reveal">
+          <div class="event-label">RECEPCIÓN</div>
+          <div class="event-name">Refugio El Parral</div>
+          <div class="event-time">6:00 PM</div>
+          <a
+            class="event-link"
+            href="https://maps.app.goo.gl/SSoSAZXwJd8aYQ9i8"
+            target="_blank"
+            >Ver mapa</a
+          >
+        </div>
+
+        <img
+          class="photo photo-second reveal"
+          src="images/img2-web.jpg"
+          alt="Detalle con nuestra perrita"
+        />
+
+        <div class="dresscode reveal">
+          <div class="event-label">DRESS CODE</div>
+          <div class="dresscode-title">Formal · Elegante</div>
+          <div class="dresscode-text">
+            Nuestra decoración es un festín de fucsias y amarillos — ¡ven
+            vestido para hacerle honor!
+          </div>
+        </div>
+
+        <div class="rsvp reveal">
+          <img
+            class="bg-flower"
+            data-speed="-0.18"
+            data-max="70"
+            src="uploads/imgFlowers_yellow-web.png"
+            alt=""
+            style="height: 200px; top: -40px; left: -56px; --rot: -18deg"
+          />
+          <div class="rsvp-title">Confirma tu asistencia</div>
+          <div class="rsvp-text">
+            Antes del 20 de agosto, escribiendo a nuestra wedding planner
+            Fiorella.
+          </div>
+          <a
+            class="rsvp-button"
+            href="https://wa.me/51986355732?text=Hola%20Fiorella%2C%20quiero%20confirmar%20mi%20asistencia%20a%20la%20boda%20de%20Yossi%20%26%20Mario%20%C2%B7%2005.09.2026%20%"
+            target="_blank"
+            >Confirmar por WhatsApp</a
+          >
+        </div>
+
+        <div class="gifts reveal">
+          <img
+            class="bg-flower"
+            data-speed="0.2"
+            data-max="75"
+            src="uploads/imgFlowers_fucsia-web.png"
+            alt=""
+            style="height: 210px; bottom: -50px; left: -58px; --rot: -30deg"
+          />
+          <div class="gifts-label">MESA DE REGALOS</div>
+          <div class="gifts-text">
+            Tu presencia es nuestro mejor regalo. Si deseas tener un detalle con
+            nosotros:
+          </div>
+          <div class="gifts-accounts">
+            <div class="account">
+              <div class="account-bank">Interbank · Soles</div>
+              <div class="account-detail">Cuenta: 898 3224548453</div>
+              <div class="account-detail">CCI: 00389801322454845341</div>
+              <div class="account-owner">
+                A nombre de Mario Yahuarcani Salinas
+              </div>
+            </div>
+            <div class="account">
+              <div class="account-bank">BBVA · Soles</div>
+              <div class="account-detail">Cuenta: 0011-0057-0257171494</div>
+              <div class="account-detail">CCI: 01105700025717149474</div>
+              <div class="account-owner">A nombre de Yossi Lara Guardamino</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="note">
+          Por espacio, la celebración es solo para adultos. ¡Gracias por tu
+          comprensión!
+        </div>
+
+        <img
+          class="photo photo-third reveal"
+          src="images/img3-web.jpg"
+          alt="Nuestras tres perritas"
+        />
+
+        <div class="signoff reveal">
+          <div class="signoff-line">Con todo nuestro cariño,</div>
+          <div class="signoff-names">Yossi &amp; Mario</div>
+          <div class="signoff-dogs">
+            Firman también sus perritas: Chansey · Tiana · Lulú
+          </div>
+        </div>
+
+        <img
+          class="corner"
+          data-speed="-0.05"
+          src="uploads/imgFlowers_yellow-web.png"
+          alt=""
+          style="
+            bottom: -34px;
+            left: -28px;
+            height: 140px;
+            --flip: -1;
+            --rot: 8deg;
+          "
+        />
+        <img
+          class="corner"
+          data-speed="0.04"
+          src="uploads/imgFlowers_fucsia-web.png"
+          alt=""
+          style="bottom: -32px; right: -28px; height: 160px; --rot: 6deg"
+        />
+        <img
+          class="corner"
+          data-speed="-0.06"
+          src="uploads/imgFlowers_yellow-web.png"
+          alt=""
+          style="bottom: -22px; right: 52px; height: 108px; --rot: -16deg"
+        />
       </div>
-    </div>
 
-    <div class="note">Por espacio, la celebración es solo para adultos. ¡Gracias por tu comprensión!</div>
+      <audio
+        id="wedding-audio"
+        src="uploads/cancion.mp3"
+        loop
+        preload="none"
+      ></audio>
+      <button
+        id="music-toggle"
+        class="music-btn"
+        aria-label="Reproducir música"
+      >
+        ♪
+      </button>
+    </section>
 
-    <img class="photo photo-third reveal" src="images/img3-web.jpg" alt="Nuestras tres perritas">
+    <script>
+      // Countdown
+      const target = new Date("2026-09-05T16:00:00-05:00").getTime();
+      function pad(n) {
+        return String(n).padStart(2, "0");
+      }
+      function tick() {
+        const diff = Math.max(0, target - Date.now());
+        const day = 86400000,
+          hr = 3600000,
+          min = 60000;
+        const days = Math.floor(diff / day);
+        const hours = Math.floor((diff % day) / hr);
+        const mins = Math.floor((diff % hr) / min);
+        const secs = Math.floor((diff % min) / 1000);
+        document.getElementById("cd-days").textContent = days;
+        document.getElementById("cd-hours").textContent = pad(hours);
+        document.getElementById("cd-mins").textContent = pad(mins);
+        document.getElementById("cd-secs").textContent = pad(secs);
+      }
+      tick();
+      setInterval(tick, 1000);
 
-    <div class="signoff reveal">
-      <div class="signoff-line">Con todo nuestro cariño,</div>
-      <div class="signoff-names">Yossi &amp; Mario</div>
-      <div class="signoff-dogs">Firman también sus perritas: Chansey · Tiana · Lulú</div>
-    </div>
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
 
-    <img class="corner" data-speed="-0.05" src="uploads/imgFlowers_yellow-web.png" alt="" style="bottom:-34px;left:-28px;height:140px;--flip:-1;--rot:8deg">
-    <img class="corner" data-speed="0.04" src="uploads/imgFlowers_fucsia-web.png" alt="" style="bottom:-32px;right:-28px;height:160px;--rot:6deg">
-    <img class="corner" data-speed="-0.06" src="uploads/imgFlowers_yellow-web.png" alt="" style="bottom:-22px;right:52px;height:108px;--rot:-16deg">
-  </div>
+      // Scroll reveal
+      if (!reduceMotion && "IntersectionObserver" in window) {
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("in-view");
+                revealObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15, rootMargin: "0px 0px -60px 0px" },
+        );
+        document
+          .querySelectorAll(".reveal")
+          .forEach((el) => revealObserver.observe(el));
+      } else {
+        document
+          .querySelectorAll(".reveal")
+          .forEach((el) => el.classList.add("in-view"));
+      }
 
-  <audio id="wedding-audio" src="uploads/cancion.mp3" loop preload="none"></audio>
-  <button id="music-toggle" class="music-btn" aria-label="Reproducir música">♪</button>
-</section>
+      // Flower parallax
+      if (!reduceMotion) {
+        const corners = document.querySelectorAll(
+          ".card img.corner, .bg-flower",
+        );
+        let ticking = false;
+        function updateParallax() {
+          const viewportCenter = window.innerHeight / 2;
+          corners.forEach((img) => {
+            const speed = parseFloat(img.dataset.speed || "0");
+            const max = parseFloat(img.dataset.max || "22");
+            const rect = img.getBoundingClientRect();
+            const elementCenter = rect.top + rect.height / 2;
+            const offset = Math.max(
+              -max,
+              Math.min(max, (viewportCenter - elementCenter) * speed),
+            );
+            img.style.setProperty("--ty", offset.toFixed(1) + "px");
+          });
+          ticking = false;
+        }
+        function requestParallax() {
+          if (!ticking) {
+            requestAnimationFrame(updateParallax);
+            ticking = true;
+          }
+        }
+        window.addEventListener("scroll", requestParallax, { passive: true });
+        window.addEventListener("resize", requestParallax, { passive: true });
+        updateParallax();
+      }
 
-<script>
-  // Countdown
-  const target = new Date('2026-09-05T16:00:00-05:00').getTime();
-  function pad(n) { return String(n).padStart(2, '0'); }
-  function tick() {
-    const diff = Math.max(0, target - Date.now());
-    const day = 86400000, hr = 3600000, min = 60000;
-    const days = Math.floor(diff / day);
-    const hours = Math.floor((diff % day) / hr);
-    const mins = Math.floor((diff % hr) / min);
-    const secs = Math.floor((diff % min) / 1000);
-    document.getElementById('cd-days').textContent = days;
-    document.getElementById('cd-hours').textContent = pad(hours);
-    document.getElementById('cd-mins').textContent = pad(mins);
-    document.getElementById('cd-secs').textContent = pad(secs);
-  }
-  tick();
-  setInterval(tick, 1000);
-
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // Scroll reveal
-  if (!reduceMotion && 'IntersectionObserver' in window) {
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          revealObserver.unobserve(entry.target);
+      // Music toggle
+      const audio = document.getElementById("wedding-audio");
+      const musicBtn = document.getElementById("music-toggle");
+      musicBtn.addEventListener("click", () => {
+        if (audio.paused) {
+          audio
+            .play()
+            .then(() => {
+              musicBtn.textContent = "❚❚";
+            })
+            .catch(() => {});
+        } else {
+          audio.pause();
+          musicBtn.textContent = "♪";
         }
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
-    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-  } else {
-    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in-view'));
-  }
-
-  // Flower parallax
-  if (!reduceMotion) {
-    const corners = document.querySelectorAll('.card img.corner');
-    let ticking = false;
-    function updateParallax() {
-      const y = window.scrollY;
-      corners.forEach(img => {
-        const speed = parseFloat(img.dataset.speed || '0');
-        const offset = Math.max(-22, Math.min(22, y * speed));
-        img.style.setProperty('--ty', offset.toFixed(1) + 'px');
-      });
-      ticking = false;
-    }
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(updateParallax);
-        ticking = true;
-      }
-    }, { passive: true });
-    updateParallax();
-  }
-
-  // Music toggle
-  const audio = document.getElementById('wedding-audio');
-  const musicBtn = document.getElementById('music-toggle');
-  musicBtn.addEventListener('click', () => {
-    if (audio.paused) {
-      audio.play().then(() => { musicBtn.textContent = '❚❚'; }).catch(() => {});
-    } else {
-      audio.pause();
-      musicBtn.textContent = '♪';
-    }
-  });
-</script>
-
-</body>
+    </script>
+  </body>
 </html>
