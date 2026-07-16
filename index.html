@@ -720,19 +720,20 @@
           "uploads/imgFlowers_fucsia-web.png",
           "uploads/imgFlowers_yellow-web.png",
         ];
-        const count = 13;
+        const count = 26;
         let maxEnd = 0;
         for (let i = 0; i < count; i++) {
           const petal = document.createElement("img");
           petal.src = flowers[i % flowers.length];
           petal.alt = "";
           petal.className = "petal";
-          const size = 26 + Math.random() * 20;
+          const size = 18 + Math.pow(Math.random(), 1.8) * 74;
           const left = Math.random() * 100;
-          const duration = 2 + Math.random();
-          const delay = Math.random() * 0.6;
+          const duration = 2 + Math.random() * 1.2 + (size / 92) * 0.7;
+          const delay = Math.random() * 0.7;
           const drift = (Math.random() - 0.5) * 120;
-          const rot = 200 + Math.random() * 320;
+          const rotDir = Math.random() < 0.5 ? -1 : 1;
+          const rot = rotDir * (200 + Math.random() * 320);
           petal.style.left = left + "vw";
           petal.style.width = size + "px";
           petal.style.setProperty("--drift", drift + "px");
