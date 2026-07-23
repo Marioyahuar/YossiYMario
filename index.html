@@ -240,7 +240,10 @@
         object-fit: cover;
       }
       .photo-hero {
-        height: 520px;
+        /* 3:2 source in a 6:5 box crops 20% of the width and keeps both faces
+           clear of the edges. A fixed height would tighten the crop further on
+           narrow viewports, where the card is under 430px. */
+        aspect-ratio: 6 / 5;
       }
       .photo-second {
         height: 400px;
