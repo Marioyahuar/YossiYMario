@@ -248,7 +248,9 @@
         object-position: 65% center;
       }
       .photo-third {
-        height: 560px;
+        /* Collage image: match the box to the source ratio (1120x1680) so no
+           panel gets cropped. aspect-ratio keeps this true at any card width. */
+        aspect-ratio: 2 / 3;
         margin-top: 16px;
       }
 
